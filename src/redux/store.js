@@ -1,21 +1,52 @@
-// import { configureStore } from '@reduxjs/toolkit';
-// import { setupListeners } from '@reduxjs/toolkit/query';
-// import { pokemonApi } from './services/pokemon';
+import { configureStore } from '@reduxjs/toolkit';
+import filter from './filterSlice';
+import user from './user';
+import { userApi } from './userApi';
 
-// const store = configureStore({
-//   reducer: {
-//     // Add the generated reducer as a specific top-level slice
-//     [pokemonApi.reducerPath]: pokemonApi.reducer,
-//   },
-//   // Adding the api middleware enables caching, invalidation, polling,
-//   // and other useful features of `rtk-query`.
-//   middleware: (getDefaultMiddleware) =>
-//     getDefaultMiddleware().concat(pokemonApi.middleware),
-// })
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 
-// export default store;
+// ----- filter persistor -----
+const filterPersistConfig = {
+  key: 'filter',
+  version: 1,
+  storage,
+};
 
-// // optional, but required for refetchOnFocus/refetchOnReconnect behaviors
-// // see `setupListeners` docs - takes an optional callback as the 2nd arg for customization
-// setupListeners(store.dispatch)
+const persistedFilterReducer = persistReducer(filterPersistConfig, filter);
+
+// ----- filter persistor -----
+const userPersistConfig = {
+  key: 'user',
+  version: 1,
+  storage,
+  whitelist: ['token'],
+};
+
+const persistedUserReducer = persistReducer(userPersistConfig, user);
+
+export const store = configureStore({
+  reducer: {
+    filter: persistedFilterReducer,
+    user: persistedUserReducer,
+    [userApi.reducerPath]: userApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(userApi.middleware),
+});
+
+export const persistor = persistStore(store);
