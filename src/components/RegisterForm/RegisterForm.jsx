@@ -1,9 +1,13 @@
 import { useState } from 'react';
+import { useSignupMutation } from 'redux/userApi';
 
 const RegisterForm = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [signupFunc, status] = useSignupMutation();
+  console.log("registerstatus", status);
+
+  const [name, setName] = useState('reg1');
+  const [email, setEmail] = useState('reg2@gmail.com');
+  const [password, setPassword] = useState('12345qwe');
 
   const handleChangeName = (e) => setName(e.target.value);
   const handleChangeEmail = (e) => setEmail(e.target.value);
@@ -16,7 +20,9 @@ const RegisterForm = () => {
     console.log('Register email:', email);
     console.log('Register password:', password);
 
-    // const newUser = {name, email, password}
+    const newUser = {name, email, password}
+    console.log("newUser", newUser);
+    signupFunc(newUser);
 
     // resetForm();
   };
