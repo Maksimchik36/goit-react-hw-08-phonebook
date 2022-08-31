@@ -3,7 +3,7 @@ import { useLoginMutation } from 'redux/userApi';
 
 const LoginForm = () => {
   const [loginFunc, status] = useLoginMutation();
-  console.log("login status", status);
+  // console.log("login status", status);
 
   const [email, setEmail] = useState('log1@gmail.com');
   const [password, setPassword] = useState('12345qwe');
@@ -17,9 +17,9 @@ const LoginForm = () => {
     console.log('Login email:', email);
     console.log('Login password:', password);
 
-    const logUser = { email, password};
-    console.log("logUser", logUser);
-    loginFunc(logUser);
+    // const logUser = {email, password};
+    // console.log("logUser", logUser);
+    loginFunc({email, password});
 
     // resetForm();
   };

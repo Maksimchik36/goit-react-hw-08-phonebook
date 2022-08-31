@@ -16,7 +16,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 
-// ----- filter persistor -----
+// ----- filter persistor ----- для хранения текста запроса в localStorage
 const filterPersistConfig = {
   key: 'filter',
   version: 1,
@@ -25,7 +25,7 @@ const filterPersistConfig = {
 
 const persistedFilterReducer = persistReducer(filterPersistConfig, filter);
 
-// ----- filter persistor -----
+// ----- user persistor ----- для [хранения token в localStorage
 const userPersistConfig = {
   key: 'user',
   version: 1,
@@ -41,12 +41,19 @@ export const store = configureStore({
     user: persistedUserReducer,
     [userApi.reducerPath]: userApi.reducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
+  middleware: (getDefaultMiddleware) => [
+    ...getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(userApi.middleware),
+    }), userApi.middleware,
+  ],
+  // middleware: (getDefaultMiddleware) =>
+  //   getDefaultMiddleware({
+  //     serializableCheck: {
+  //       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+  //     },
+  //   }).concat(userApi.middleware),
 });
 
 export const persistor = persistStore(store);

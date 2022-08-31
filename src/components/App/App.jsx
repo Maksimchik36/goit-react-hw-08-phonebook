@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import Header from 'components/Header';
 import Loader from 'components/Loader';
 import RegisterPage from 'pages/RegisterPage';
+import { useCurrentUserQuery } from 'redux/userApi';
 
 const AddContactPage = lazy(() => import('../../pages/AddContactPage'));
 const ContactsPage = lazy(() => import('../../pages/ContactsPage'));
@@ -13,6 +14,10 @@ const Logout = lazy(() => import('../Logout'));
 
 
 const App = () => {
+  // get data about last user
+  const { data } = useCurrentUserQuery();
+  console.log("data", data);
+
   return (
     <div>
       <Header></Header>

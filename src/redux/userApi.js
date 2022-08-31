@@ -4,6 +4,7 @@ export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://connections-api.herokuapp.com',
+    // для работы currentUser 
     prepareHeaders: (headers, { getState }) => {
       const { token = '' } = getState().user;
 
@@ -24,7 +25,7 @@ export const userApi = createApi({
       invalidatesTags: ['User'],
     }),
 
-    // useLoginMutation
+    // useLoginMutation    ?????
     login: builder.mutation({
       query: (payload) => ({
         url: '/users/login',
