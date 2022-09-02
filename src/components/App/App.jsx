@@ -6,13 +6,16 @@ import { useSelector } from 'react-redux';
 // import ContactsPage from 'pages/ContactsPage';
 import Header from 'components/Header';
 import Loader from 'components/Loader';
-import RegisterPage from 'pages/RegisterPage';
+// import LoginPage from 'pages/LoginPage';
+// import RegisterPage from 'pages/RegisterPage';
+
 import { useCurrentUserQuery } from 'redux/userApi';
+import Home from 'components/Home';
 
 const AddContactPage = lazy(() => import('../../pages/AddContactPage'));
 const ContactsPage = lazy(() => import('../../pages/ContactsPage'));
 const LoginPage = lazy(() => import('../../pages/LoginPage'));
-const Logout = lazy(() => import('../Logout'));
+const RegisterPage = lazy(() => import('../../pages/RegisterPage'));
 
 
 const App = () => {
@@ -29,12 +32,12 @@ const App = () => {
       <Suspense fallback={<Loader />}>
         
         <Routes>        
+          <Route path="/" element={ <Home/>} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/" element={<PrivateRoutes />}>       
             <Route path="/adding" element={<AddContactPage />} />
             <Route path="/contacts" element={<ContactsPage />} />
-            <Route path ="/logout" element={<Logout/>} />            
           </Route>          
           <Route path ="*" element={<LoginPage />} />
         </Routes>      

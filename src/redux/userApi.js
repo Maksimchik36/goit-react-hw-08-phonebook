@@ -68,7 +68,7 @@ export const userApi = createApi({
     // useDeleteContactMutation    
     deleteContact: builder.mutation({
       query: (payload) => ({
-        url: '/contacts/{contactId}',  // conyactId or payload ????
+        url: `/contacts/${payload}`,  // conyactId or payload ????
         method: 'DELETE',
         // body: payload,
       }),

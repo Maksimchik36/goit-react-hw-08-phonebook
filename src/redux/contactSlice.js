@@ -68,6 +68,6 @@ export const contactSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { RegisterSuccess, getCurrentSuccess } = contactSlice.actions;
+// export const { RegisterSuccess, getCurrentSuccess } = contactSlice.actions;
 
 export default contactSlice.reducer;

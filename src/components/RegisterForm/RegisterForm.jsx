@@ -1,27 +1,29 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSignupMutation } from 'redux/userApi';
 
 const RegisterForm = () => {
+  // хук при регистрации 
   const [signupFunc, status] = useSignupMutation();
   const { isLoading } = status;
+
+  const navigate = useNavigate();
+
   const [name, setName] = useState('Registration2');
   const [email, setEmail] = useState('Registration2@gmail.com');
   const [password, setPassword] = useState('12345qwe');
 
+  // сохраняет введенные в input-ы значения
   const handleChangeName = (e) => setName(e.target.value);
   const handleChangeEmail = (e) => setEmail(e.target.value);
   const handleChangePassword = (e) => setPassword(e.target.value);
 
+  // записывает данные в state.user
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log('Register name:', name);
-    console.log('Register email:', email);
-    console.log('Register password:', password);
-
-    // const newUser = {name, email, password}
-    // console.log("newUser", newUser);
-    signupFunc({name, email, password});
+    signupFunc({ name, email, password });
+    navigate('/contacts');
 
     // resetForm();
   };
