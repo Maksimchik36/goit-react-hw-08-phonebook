@@ -31,11 +31,10 @@ const App = () => {
         <Routes>        
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/home" elements={<PrivateRoutes />}>
-          {/* <Route path="/Home" elements={<PrivateRoutes />}> */}            
-            <Route path="adding" element={<AddContactPage />} />
-            <Route path="contacts" element={<ContactsPage />} />
-            <Route path ="logout" element={<Logout/>} />            
+          <Route path="/" element={<PrivateRoutes />}>       
+            <Route path="/adding" element={<AddContactPage />} />
+            <Route path="/contacts" element={<ContactsPage />} />
+            <Route path ="/logout" element={<Logout/>} />            
           </Route>          
           <Route path ="*" element={<LoginPage />} />
         </Routes>      

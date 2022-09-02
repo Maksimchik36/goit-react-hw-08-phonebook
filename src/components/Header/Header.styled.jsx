@@ -10,12 +10,13 @@ text-align: center;
 export const NavWrapSt = styled.nav`
 display: flex;
 align-items: center;
-justify-content: space-between;
+justify-content: flex-end;
 padding: 20px;
 background-color: #d9afd1;
 `;
 
 export const NavLinkSt = styled(NavLink)`
+margin-left: 20px;
 font-size: 20px;
 font-weight: 700;
 color: black;

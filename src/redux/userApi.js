@@ -25,7 +25,7 @@ export const userApi = createApi({
       invalidatesTags: ['User'],
     }),
 
-    // useLoginMutation    ?????
+    // useLoginMutation    
     login: builder.mutation({
       query: (payload) => ({
         url: '/users/login',
@@ -48,9 +48,45 @@ export const userApi = createApi({
     currentUser: builder.query({
       query: () => '/users/current',
     }),
+
+
+    // useAllContactsQuery
+    allContacts: builder.query({
+      query: () => '/contacts',
+    }),
+
+    // useNewContactMutation    
+    newContact: builder.mutation({
+      query: (payload) => ({
+        url: '/contacts',
+        method: 'POST',
+        body: payload,
+      }),
+      invalidatesTags: ['Contact'],
+    }),
+
+    // useDeleteContactMutation    
+    deleteContact: builder.mutation({
+      query: (payload) => ({
+        url: '/contacts/{contactId}',  // conyactId or payload ????
+        method: 'DELETE',
+        // body: payload,
+      }),
+      invalidatesTags: ['Contact'],
+    }),
+
+    // useChangeContactMutation    
+    changeContact: builder.mutation({
+      query: (payload) => ({
+        url: '/contacts/{contactId}',
+        method: 'PATCH',
+        body: payload,
+      }),
+      invalidatesTags: ['Contact'],
+    }),
   }),
 });
 
 
-export const { useSignupMutation, useLoginMutation, useLogoutMutation, useCurrentUserQuery } =
+export const { useSignupMutation, useLoginMutation, useLogoutMutation, useCurrentUserQuery, useAllContactsQuery, useNewContactMutation, useDeleteContactMutation, useChangeContactMutation } =
   userApi;
