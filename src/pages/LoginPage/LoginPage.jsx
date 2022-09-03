@@ -8,10 +8,10 @@ const LoginPage = () => {
 
   
   return (
-    <>
+    <div style={{display: "flex", justifyContent: "center", paddingTop: "20%"}}>
       <LoginForm></LoginForm>
       {token && <Navigate to="/" replace />}
-    </>
+    </div>
   )
 }
 

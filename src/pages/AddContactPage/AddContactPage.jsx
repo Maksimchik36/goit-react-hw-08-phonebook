@@ -37,7 +37,7 @@ const AddContactPage = () => {
     }
 
 
-    return <div>
+    return <div style={{display: "flex", justifyContent: "center", paddingTop: "20%"}}>
 
         {isLoading && <Loader />}
 

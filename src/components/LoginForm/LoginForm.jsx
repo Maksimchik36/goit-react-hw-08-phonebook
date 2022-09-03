@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useLoginMutation } from 'redux/userApi';
+import { Form, Label, Input, Button } from './LoginForm.styled';
 
 const LoginForm = () => {
   // хук из Api при логинизации
   const [loginFunc, {isLoading}] = useLoginMutation();  
 
-  const [email, setEmail] = useState('Registration@gmail.com');
+  const [email, setEmail] = useState('Registration37@gmail.com');
   const [password, setPassword] = useState('12345qwe');
 
   // сохраняет данные, введенные в поля формы
@@ -16,39 +17,36 @@ const LoginForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     loginFunc({email, password});
-
-    // resetForm();
+    resetForm();
   };
 
   // очищает поля формы
-  // const resetForm = () => {
-  //   setEmail('');
-  //   setPassword('');    
-  // }
+  const resetForm = () => {
+    setEmail('');
+    setPassword('');    
+  }
 
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: 'flex', columnGap: 10,}}>
-      <label>
-        <span>Email</span>
-        <input
+    <Form onSubmit={handleSubmit}>
+      <Label>Email
+        <Input
           type='text'
           value={email}
           onChange={handleChangeEmail}
         />
-      </label>
+      </Label>
 
-      <label>
-        <span>Password</span>
-        <input
+      <Label>Password
+        <Input
           type='password'
           value={password}
           onChange={handleChangePassword}
         />
-      </label>
+      </Label>
 
-      <button type='submit' disabled={isLoading}>login</button>
-    </form>
+      <Button type='submit' disabled={isLoading}>login</Button>
+    </Form>
   );
 };
 

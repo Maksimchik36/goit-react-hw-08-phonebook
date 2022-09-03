@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSignupMutation } from 'redux/userApi';
+import { Form, Label, Input, Button } from './RegisterForm.styled';
 
 const RegisterForm = () => {
   // хук при регистрации 
@@ -24,48 +25,44 @@ const RegisterForm = () => {
 
     signupFunc({ name, email, password });
     navigate('/contacts');
-
-    // resetForm();
+    resetForm();
   };
 
-  // const resetForm = () => {
-  //   setName('');
-  //   setEmail('');
-  //   setPassword('');    
-  // }
+  const resetForm = () => {
+    setName('');
+    setEmail('');
+    setPassword('');    
+  }
 
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: 'flex', columnGap: 10,}}>
-      <label>
-        <span>Name</span>
-        <input
+    <Form onSubmit={handleSubmit}>
+      <Label>Name
+        <Input
           type='text'
           value={name}
           onChange={handleChangeName}
         />
-          </label>
+          </Label>
           
-      <label>
-        <span>Email</span>
-        <input
+      <Label>Email
+        <Input
           type='text'
           value={email}
           onChange={handleChangeEmail}
         />
-      </label>
+      </Label>
 
-      <label>
-        <span>Password</span>
-        <input
+      <Label>Password
+        <Input
           type='password'
           value={password}
           onChange={handleChangePassword}
         />
-      </label>
+      </Label>
 
-      <button type='submit' disabled={isLoading}>login</button>
-    </form>
+      <Button type='submit' disabled={isLoading}>login</Button>
+    </Form>
   );
 };
 

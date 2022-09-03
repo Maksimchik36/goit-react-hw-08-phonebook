@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
+import { Container, Text } from './Home.styled';
 
 const Home = () => {
   return (
-      <div>
-          <p style={{textAlign: "center", margin: 0}}>Welcome to the phonebook</p>
-      </div>
+    <Container>
+          <Text>Welcome to the phonebook application</Text>
+      </Container>
   )
 }
 

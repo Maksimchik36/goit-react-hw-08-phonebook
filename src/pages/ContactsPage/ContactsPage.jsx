@@ -3,10 +3,11 @@ import ContactList from "components/ContactList";
 import { useAllContactsQuery } from "redux/userApi";
 import Loader from "components/Loader";
 import FilterByName from "components/FilterByName";
+import { Container } from "./ContactsPage.styled";
 
 const ContactsPage = () => {
     // ф-я возвращает данные и статусы выполнения
-  const { data, isFetching, isSuccess } = useAllContactsQuery();
+  const { data, isFetching } = useAllContactsQuery();
   console.log("data", data);
   console.log("useAllContactsQuery()", useAllContactsQuery());
 
@@ -19,15 +20,13 @@ const ContactsPage = () => {
   console.log("filteredContacts", filteredContacts);
 
     
-   return <div>
-       {isSuccess && <h1 style={{textAlign: "center"}}>Contacts</h1>}
-
+   return <Container>
        {isFetching && <Loader />}
        
        <FilterByName></FilterByName>
        
        {data && <ContactList contacts={filteredContacts} />}
-   </div>
+   </Container>
 }
 
 

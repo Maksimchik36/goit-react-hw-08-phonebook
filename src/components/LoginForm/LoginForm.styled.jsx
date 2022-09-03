@@ -1,8 +1,9 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 export const Form = styled.form`
 padding: 20px;
 display: flex; 
+column-gap: 10px;
 flex-direction: column; 
 align-items: center;
 border: 2px solid grey;

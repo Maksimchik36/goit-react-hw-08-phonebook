@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { setFilter } from 'redux/filterSlice';
+import { Container, Input, Label } from './FilterByName.styled';
 
 const FilterByName = () => {
   // получает ссылку на функцию для отправки действий
@@ -12,9 +13,9 @@ const FilterByName = () => {
   };
 
 
-    return(<div style={{textAlign: "center"}}><label>Find contact by Name
-      <input type="text" onChange={handleFilter} />
-    </label></div>)
+    return(<Container ><Label>Find contact by Name
+      <Input type="text" onChange={handleFilter} />
+    </Label></Container>)
 }
 
 

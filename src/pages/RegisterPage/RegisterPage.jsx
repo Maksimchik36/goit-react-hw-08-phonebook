@@ -9,10 +9,10 @@ const RegisterPage = () => {
   
 
   return (
-    <>
+    <div style={{display: "flex", justifyContent: "center", paddingTop: "20%"}}>
       <RegisterForm></RegisterForm>
       {token && <Navigate to="/adding" replace /> }      
-    </>
+    </div>
   )
 }
 

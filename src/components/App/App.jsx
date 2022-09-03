@@ -2,15 +2,11 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import PrivateRoutes from 'components/PrivateRoutes';
 import { useSelector } from 'react-redux';
-// import AddContactPage from 'pages/AddContactPage';
-// import ContactsPage from 'pages/ContactsPage';
 import Header from 'components/Header';
 import Loader from 'components/Loader';
-// import LoginPage from 'pages/LoginPage';
-// import RegisterPage from 'pages/RegisterPage';
-
 import { useCurrentUserQuery } from 'redux/userApi';
 import Home from 'components/Home';
+import { Container } from './App.styled';
 
 const AddContactPage = lazy(() => import('../../pages/AddContactPage'));
 const ContactsPage = lazy(() => import('../../pages/ContactsPage'));
@@ -26,7 +22,7 @@ const App = () => {
   });
 
   return (
-    <div>
+    <Container>
       <Header></Header>
 
       <Suspense fallback={<Loader />}>
@@ -42,19 +38,7 @@ const App = () => {
           <Route path ="*" element={<LoginPage />} />
         </Routes>      
       </Suspense>
-    </div>
-    // <div
-      // style={{
-      //   height: '100vh',
-      //   display: 'flex',
-      //   justifyContent: 'center',
-      //   alignItems: 'center',
-      //   fontSize: 40,
-      //   color: '#010101'
-      // }}
-    // >
-      // React homework template
-    // </div>
+    </Container>
   );
 };
 
