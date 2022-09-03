@@ -12,7 +12,7 @@ const FilterByName = () => {
   };
 
 
-    return(<div><label>Find contact by Name
+    return(<div style={{textAlign: "center"}}><label>Find contact by Name
       <input type="text" onChange={handleFilter} />
     </label></div>)
 }

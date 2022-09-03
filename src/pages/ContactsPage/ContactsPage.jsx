@@ -7,7 +7,8 @@ import FilterByName from "components/FilterByName";
 const ContactsPage = () => {
     // ф-я возвращает данные и статусы выполнения
   const { data, isFetching, isSuccess } = useAllContactsQuery();
-  // console.log("data", data);
+  console.log("data", data);
+  console.log("useAllContactsQuery()", useAllContactsQuery());
 
     // читает данные из state.filter(store) и подписывается на их обновление
   const inputData = useSelector(state => state.filter.value)
@@ -19,7 +20,7 @@ const ContactsPage = () => {
 
     
    return <div>
-       {isSuccess && <h1>Contacts</h1>}
+       {isSuccess && <h1 style={{textAlign: "center"}}>Contacts</h1>}
 
        {isFetching && <Loader />}
        
@@ -28,5 +29,6 @@ const ContactsPage = () => {
        {data && <ContactList contacts={filteredContacts} />}
    </div>
 }
+
 
 export default ContactsPage;

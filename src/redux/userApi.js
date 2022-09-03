@@ -13,7 +13,7 @@ export const userApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ['User'],
+  tagTypes: ['User', 'Contact'],
   endpoints: (builder) => ({
     // useSignupMutation
     signup: builder.mutation({
@@ -53,6 +53,7 @@ export const userApi = createApi({
     // useAllContactsQuery
     allContacts: builder.query({
       query: () => '/contacts',
+      providesTags: ['Contact'],
     }),
 
     // useNewContactMutation    
@@ -75,8 +76,8 @@ export const userApi = createApi({
       invalidatesTags: ['Contact'],
     }),
 
-    // useChangeContactMutation    
-    changeContact: builder.mutation({
+    // useEditContactMutation    
+    editContact: builder.mutation({
       query: (payload) => ({
         url: '/contacts/{contactId}',
         method: 'PATCH',
@@ -88,5 +89,5 @@ export const userApi = createApi({
 });
 
 
-export const { useSignupMutation, useLoginMutation, useLogoutMutation, useCurrentUserQuery, useAllContactsQuery, useNewContactMutation, useDeleteContactMutation, useChangeContactMutation } =
+export const { useSignupMutation, useLoginMutation, useLogoutMutation, useCurrentUserQuery, useAllContactsQuery, useNewContactMutation, useDeleteContactMutation, useEditContactMutation } =
   userApi;

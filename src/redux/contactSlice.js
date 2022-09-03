@@ -11,7 +11,7 @@ export const contactSlice = createSlice({
   initialState,
   reducers: { },
   extraReducers: (builder) => {
-    // при перезагрузке страницы -  userCurrentSuccess - следит за изменениями на userApi endpoints currentUser при результате matchFulfilled и забирает необходимые нам данные (это происходит при перезагрузке страницы)
+    // при перезагрузке страницы -  allContactsSuccess - следит за изменениями на userApi endpoints currentUser при результате matchFulfilled и забирает необходимые нам данные (это происходит при перезагрузке страницы)
     builder.addMatcher(userApi.endpoints.allContacts.matchFulfilled,
         (state, actions) =>  {
           // const { user } = payload;
@@ -19,7 +19,7 @@ export const contactSlice = createSlice({
           return {...state, ...actions.payload}
         }
       );
-
+      
     // // при регистрации - userSignupSuccess - следит за изменениями на userApi endpoints signup при результате matchFulfilled и забирает необходимые нам данные
     // builder.addMatcher(userApi.endpoints.signup.matchFulfilled,
     //   (state, { payload }) => {
@@ -48,13 +48,16 @@ export const contactSlice = createSlice({
     //   state.token = initialState.token;
     // }); 
 
-    // // при перезагрузке страницы -  userCurrentSuccess - следит за изменениями на userApi endpoints currentUser при результате matchFulfilled и забирает необходимые нам данные (это происходит при перезагрузке страницы)
-    // builder.addMatcher(userApi.endpoints.currentUser.matchFulfilled,
-    //   (state, actions) =>  {
-    //     // const { user } = payload;
-    //     return {...state, ...actions.payload}
-    //   }
-    // );
+    // editContactSuccess - следит за изменениями на userApi endpoints editContact при результате matchFulfilled 
+    builder.addMatcher(userApi.endpoints.editContact.matchFulfilled,
+      (state, actions) =>  {
+        state.contacts = state.contacts.map(contact => {
+          console.log("state",state)
+          console.log("actions.payload", actions.payload)
+          return contact.id === actions.payload.id ? actions.payload : contact;
+        });
+      }
+    );
 
     // при перезагрузке страницы - userError - следит за изменениями на userApi endpoints currentUser при результате matchRejected и перезаписывает значение token в пустую строку (например, если token просрочен)
     // builder.addMatcher(userApi.endpoints.currentUser.matchRejected,
