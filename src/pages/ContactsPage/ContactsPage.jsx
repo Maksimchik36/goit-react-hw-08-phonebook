@@ -14,7 +14,7 @@ const ContactsPage = () => {
   const inputData = useSelector(state => state.filter.value)
    
     // выдает отфильтрованные контакты (если есть data - обрабатывает, а если нет - [])
-  const filteredContacts = data?.filter(obj => obj.name.toLowerCase().includes(inputData)) ?? [];
+  const filteredContacts = data?.filter(obj => obj.name.toLowerCase().includes(inputData.toLowerCase())) ?? [];
   
   // проверяет по завершению запроса наличие данных и запроса фильтрации и выдает сообщение об ошибке, если нет результатов, удовлетворяющих запросу фильтрации
   if (status === "fulfilled" && data.length !== 0 && filteredContacts.length === 0) {
