@@ -25,7 +25,7 @@ const filterPersistConfig = {
 
 const persistedFilterReducer = persistReducer(filterPersistConfig, filter);
 
-// ----- user persistor ----- для [хранения token в localStorage
+// ----- user persistor ----- для хранения token в localStorage
 const userPersistConfig = {
   key: 'user',
   version: 1,
@@ -48,12 +48,7 @@ export const store = configureStore({
       },
     }), userApi.middleware,
   ],
-  // middleware: (getDefaultMiddleware) =>
-  //   getDefaultMiddleware({
-  //     serializableCheck: {
-  //       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-  //     },
-  //   }).concat(userApi.middleware),
 });
+
 
 export const persistor = persistStore(store);

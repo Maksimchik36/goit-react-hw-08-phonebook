@@ -10,9 +10,9 @@ const RegisterForm = () => {
 
   const navigate = useNavigate();
 
-  const [name, setName] = useState('Registration2');
-  const [email, setEmail] = useState('Registration2@gmail.com');
-  const [password, setPassword] = useState('12345qwe');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   // сохраняет введенные в input-ы значения
   const handleChangeName = (e) => setName(e.target.value);

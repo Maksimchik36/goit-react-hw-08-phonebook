@@ -8,6 +8,7 @@ export const filterSlice = createSlice({
   name: 'filter',
   initialState,
   reducers: {
+    // изменяет value при Filter by Name
     setFilter: (state, action) => {
       state.value = action.payload;
     },

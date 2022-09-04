@@ -7,6 +7,9 @@ import Loader from 'components/Loader';
 import { useCurrentUserQuery } from 'redux/userApi';
 import Home from 'components/Home';
 import { Container } from './App.styled';
+import React from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddContactPage = lazy(() => import('../../pages/AddContactPage'));
 const ContactsPage = lazy(() => import('../../pages/ContactsPage'));
@@ -37,6 +40,7 @@ const App = () => {
           </Route>          
           <Route path ="*" element={<LoginPage />} />
         </Routes>      
+        <ToastContainer />
       </Suspense>
     </Container>
   );

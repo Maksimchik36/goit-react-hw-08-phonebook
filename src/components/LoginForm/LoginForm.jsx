@@ -6,8 +6,8 @@ const LoginForm = () => {
   // хук из Api при логинизации
   const [loginFunc, {isLoading}] = useLoginMutation();  
 
-  const [email, setEmail] = useState('Registration37@gmail.com');
-  const [password, setPassword] = useState('12345qwe');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   // сохраняет данные, введенные в поля формы
   const handleChangeEmail = (e) => setEmail(e.target.value);

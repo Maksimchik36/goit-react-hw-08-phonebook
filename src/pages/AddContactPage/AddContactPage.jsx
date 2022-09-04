@@ -1,20 +1,18 @@
 import ContactForm from "components/ContactForm";
-import { useNavigate } from 'react-router-dom';
 import { useNewContactMutation, useAllContactsQuery } from "redux/userApi";
 import Loader from "components/Loader";
+import { Container } from "./AddContactPage.styled";
+import { showSuccess, showError } from "components/ToastMessages/ToastMessages";
     
     
 const AddContactPage = () => {
-    // для отправки пользователя на другую page
-    const navigate = useNavigate();
-
     // ф-я возвращает данные (и статусы выполнения, к-рые в данном случае не исп-ются
     const { data } = useAllContactsQuery();
 
     // ф-я возвращает ф-ю и статусы выполнения
     const [createContactFunc, {isLoading}] = useNewContactMutation();
 
-    // добавляет элемент, используяданные из формы
+    // добавляет элемент, используя данные из формы
     const handleSubmit = event => {
         event.preventDefault();
         // значение input поля name
@@ -28,22 +26,22 @@ const AddContactPage = () => {
         const contactIsInList = data.some(contact => contact.name === name);
         if (contactIsInList) {
             // сообщение об ошибке
-            alert(`${name} is already in contacts list.`);    
+            showError(`${name} is already in contacts list.`);
             return;
         }
         // если нового контакта нет в списке, осуществляется вызов ф-и, к-рая создаёт новый контакт с данными, полученными из input-ов, и отправляет его на бэк-энд mockAPI.
         createContactFunc({ name, number, });
-        navigate('/contacts');
+        showSuccess("Contact successfully created.")
     }
 
 
-    return <div style={{display: "flex", justifyContent: "center", paddingTop: "20%"}}>
+    return <Container>
 
         {isLoading && <Loader />}
 
         <ContactForm onSubmit={handleSubmit}></ContactForm>
 
-    </div>
+    </Container>
 }
 
 
